@@ -1,18 +1,16 @@
 {
-  "name": "winnie-poo-aeroplano",
-  "version": "1.0.0",
-  "description": "AA",
-  "main": "index.js",
-  "scripts": {
-    "build": "tsc",
-    "start": "node dist/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "dependencies": {
     "@types/express": "^5.0.6",
     "@types/node": "^25.6.0",
     "express": "^5.2.1",
     "typescript": "^6.0.3"
+  },
+  "name": "winnie-poo-aeroplano",
+  "version": "1.0.0",
+  "description": "AA",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",

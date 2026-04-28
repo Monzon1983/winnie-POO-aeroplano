@@ -5,3 +5,8 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=development
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
