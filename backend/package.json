@@ -1,4 +1,11 @@
 {
+  "dependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.6.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "typescript": "^6.0.3"
+  },
   "name": "winnie-poo-aeroplano",
   "version": "1.0.0",
   "description": "AA",
@@ -7,12 +14,6 @@
     "build": "tsc",
     "start": "node dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "@types/express": "^5.0.6",
-    "@types/node": "^25.6.0",
-    "express": "^5.2.1",
-    "typescript": "^6.0.3"
   },
   "repository": {
     "type": "git",
@@ -25,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/Monzon1983/winnie-POO-aeroplano/issues"
   },
-  "homepage": "https://github.com/Monzon1983/winnie-POO-aeroplano#readme"
+  "homepage": "https://github.com/Monzon1983/winnie-POO-aeroplano#readme",
+  "devDependencies": {
+    "@types/cors": "^2.8.19"
+  }
 }

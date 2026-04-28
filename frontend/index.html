@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD Aeroplano (POO)</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .form-group { margin-bottom: 10px; }
+        .card { border: 1px solid #ccc; padding: 15px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h2>Gestión de Aeroplanos (Docker + POO)</h2>
+    
+    <div class="card">
+        <h3>Construir Nuevo Aeroplano</h3>
+        <form id="avionForm">
+            <div class="form-group">
+                <label>ID del Avión:</label>
+                <input type="number" id="id" required>
+            </div>
+            <div class="form-group">
+                <label>Cantidad de Hélices (Propulsión):</label>
+                <input type="number" id="helices" required>
+            </div>
+            <div class="form-group">
+                <label>Cantidad de Alas:</label>
+                <input type="number" id="alas" required>
+            </div>
+            <button type="submit">Ensamblar y Guardar</button>
+        </form>
+    </div>
+
+    <h3>Flota Activa</h3>
+    <div id="flotaContainer"></div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/aeroplanos';
+
+        // LEER (GET)
+        async function cargarFlota() {
+            const res = await fetch(API_URL);
+            const aviones = await res.json();
+            const container = document.getElementById('flotaContainer');
+            container.innerHTML = '';
+            
+            aviones.forEach(a => {
+                container.innerHTML += `
+                    <div class="card">
+                        <p><strong>Avión ID:</strong> ${a.id}</p>
+                        <p><strong>Motor:</strong> ${a.motor}</p>
+                        <p><strong>Alas:</strong> ${a.alas}</p>
+                        <p><strong>Estado:</strong> ${a.estado}</p>
+                        <button onclick="borrarAvion(${a.id})">Desguazar (Borrar)</button>
+                    </div>`;
+            });
+        }
+
+        // CREAR (POST)
+        document.getElementById('avionForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('id').value;
+            const helices = document.getElementById('helices').value;
+            const alas = document.getElementById('alas').value;
+
+            await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: parseInt(id), helices: parseInt(helices), alas: parseInt(alas) })
+            });
+            cargarFlota();
+        });
+
+        // BORRAR (DELETE)
+        async function borrarAvion(id) {
+            await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+            cargarFlota();
+        }
+
+        // Carga inicial
+        cargarFlota();
+    </script>
+</body>
+</html>

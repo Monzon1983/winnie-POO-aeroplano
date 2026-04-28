@@ -1,7 +1,9 @@
 import express from 'express';
+import cors from 'cors'; 
 import { Aeroplano, Helice, Alas } from './models/aeroplano';
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 let flota: Aeroplano[] = [];
